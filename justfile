@@ -43,5 +43,6 @@ systemctl-delete:
   systemctl --user stop jenkins-agent.service
   systemctl --user disable jenkins-agent.service
   rm ~/.config/systemd/user/jenkins-agent.service
+  rm ~/.config/jenkins-agent.env
   systemctl --user daemon-reload
   systemctl --user reset-failed

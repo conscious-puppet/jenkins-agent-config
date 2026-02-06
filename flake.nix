@@ -18,6 +18,7 @@
 
             [Service]
             Type=simple
+            EnvironmentFile=%h/.config/jenkins-agent.env
             WorkingDirectory=@JENKINS_AGENT_WORK_DIR@
             ExecStart=${pkgs.openjdk}/bin/java -jar @JENKINS_AGENT_PATH@ \
               -url @JENKINS_URL@ \
@@ -44,6 +45,8 @@
             sed -i "s|@JENKINS_URL@|$JENKINS_URL|g" "$USER_SYSTEMD_DIR/jenkins-agent.service"
             sed -i "s|@SECRET_KEY@|$SECRET_KEY|g" "$USER_SYSTEMD_DIR/jenkins-agent.service"
             sed -i "s|@JENKINS_AGENT_NAME@|$JENKINS_AGENT_NAME|g" "$USER_SYSTEMD_DIR/jenkins-agent.service"
+
+            echo "PATH=$PATH" > "$HOME/.config/jenkins-agent.env"
 
             systemctl --user daemon-reload
             systemctl --user enable jenkins-agent

@@ -68,6 +68,8 @@
               buildInputs = with pkgs; [
                 openjdk
                 just
+                awscli2
+                trivy
               ];
             };
         };

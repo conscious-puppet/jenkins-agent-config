@@ -19,27 +19,27 @@ start-agent:
     -workDir ${JENKINS_AGENT_WORK_DIR}
 
 # Read systemctl logs
-systemctl-log:
+log:
   journalctl --user -u jenkins-agent -f
 
 # systemctl start
-systemctl-start:
+start:
   systemctl --user start jenkins-agent.service
 
 # systemctl stop
-systemctl-stop:
+stop:
   systemctl --user stop jenkins-agent.service
 
 # systemctl restart
-systemctl-restart:
+restart:
   systemctl --user restart jenkins-agent.service
 
 # systemctl status
-systemctl-status:
+status:
   systemctl --user status jenkins-agent.service
 
 # delete service
-systemctl-delete:
+delete:
   systemctl --user stop jenkins-agent.service
   systemctl --user disable jenkins-agent.service
   rm ~/.config/systemd/user/jenkins-agent.service

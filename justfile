@@ -42,7 +42,12 @@ status:
 delete:
   systemctl --user stop jenkins-agent.service
   systemctl --user disable jenkins-agent.service
+  systemctl --user stop jenkins-agent-cleanup.timer
+  systemctl --user disable jenkins-agent-cleanup.timer
   rm ~/.config/systemd/user/jenkins-agent.service
+  rm ~/.config/systemd/user/jenkins-agent-cleanup.service
+  rm ~/.config/systemd/user/jenkins-agent-cleanup.timer
   rm ~/.config/jenkins-agent.env
+  rm ~/.config/agent-cleanup.sh
   systemctl --user daemon-reload
   systemctl --user reset-failed

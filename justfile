@@ -38,6 +38,10 @@ restart:
 status:
   systemctl --user status jenkins-agent.service
 
+# systemctl agent cleanup
+cleanup:
+  systemctl --user start jenkins-agent-cleanup.service
+
 # delete service
 delete:
   systemctl --user stop jenkins-agent.service

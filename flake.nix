@@ -85,7 +85,7 @@
 
             echo "PATH=$PATH" > "$HOME/.config/jenkins-agent.env"
 
-            cp ${agentCleanupScriptTemplate} "$HOME/.config/agent-cleanup.sh"
+            cp ${agentCleanupScriptTemplate}/bin/agent-cleanup "$HOME/.config/agent-cleanup.sh"
             sed -i "s|@JENKINS_AGENT_WORK_DIR@|$JENKINS_AGENT_WORK_DIR|g" "$HOME/.config/agent-cleanup.sh"
             chmod +x "$HOME/.config/agent-cleanup.sh"
 

@@ -55,3 +55,12 @@ delete:
   rm ~/.config/agent-cleanup.sh
   systemctl --user daemon-reload
   systemctl --user reset-failed
+
+# edit daemon.json
+edit-docker-daemon:
+  sudo vim /etc/docker/daemon.json
+
+# restart docker
+docker-restart
+  sudo systemctl daemon-reload
+  sudo systemctl restart jenkins-agent

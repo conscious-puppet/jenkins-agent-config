@@ -63,4 +63,4 @@ edit-docker-daemon:
 # restart docker
 docker-restart:
   sudo systemctl daemon-reload
-  sudo systemctl restart jenkins-agent
+  sudo systemctl restart docker

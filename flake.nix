@@ -21,6 +21,7 @@
             EnvironmentFile=%h/.config/jenkins-agent.env
             WorkingDirectory=@JENKINS_AGENT_WORK_DIR@
             ExecStart=${pkgs.openjdk}/bin/java \
+              -Xmx4G
               -Dhudson.remoting.Launcher.pingIntervalSec=60 \
               -Dhudson.remoting.Launcher.pingTimeoutSec=120 \
               -Dorg.jenkinsci.remoting.engine.JnlpProtocol3.idleTimeout=600 \

@@ -39,11 +39,24 @@
           '';
           agentCleanupScriptTemplate = pkgs.writeShellScriptBin "agent-cleanup" ''
             # 1. Docker Cleanup
+            echo "Starting Docker cleanup..."
+            docker ps -q | xargs docker inspect --format '{{.Id}} {{.State.StartedAt}}' | while read line; do
+              ID=$(echo $line | awk '{print $1}')
+              # Convert the start time to a Unix timestamp
+              START_TIME=$(date -d "$(echo $line | awk '{print $2}' | cut -d. -f1)" +%s)
+              ONE_DAY_AGO=$(date -d "24 hours ago" +%s)
+
+              if [ $START_TIME -lt $ONE_DAY_AGO ]; then
+                echo "Deleting container $ID..."
+                docker rm -f $ID
+              fi
+            done
+
             # -a: remove all unused images, not just dangling ones
             # -f: force/don't prompt for confirmation
             # --volumes: remove unused volumes
-            echo "Starting Docker cleanup..."
             docker system prune -af --volumes
+
 
             # 2. Jenkins Workspace Cleanup
             # Only delete directories older than 7 days to avoid killing active builds

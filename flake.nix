@@ -22,9 +22,10 @@
             WorkingDirectory=@JENKINS_AGENT_WORK_DIR@
             ExecStart=${pkgs.openjdk}/bin/java \
               -Xms2G -Xmx10G \
-              -Dhudson.remoting.Launcher.pingIntervalSec=60 \
-              -Dhudson.remoting.Launcher.pingTimeoutSec=120 \
-              -Dorg.jenkinsci.remoting.engine.JnlpProtocol3.idleTimeout=600 \
+              -Dhudson.remoting.Launcher.pingIntervalSec=20 \
+              -Dhudson.remoting.Launcher.pingTimeoutSec=40 \
+              -Dorg.jenkinsci.remoting.engine.JnlpProtocol3.idleTimeout=300 \
+              -Djenkins.slaves.DefaultJnlpSlaveReceiver.connectionKeepAlive=true \
               -jar @JENKINS_AGENT_PATH@ \
               -url @JENKINS_URL@ \
               -secret @SECRET_KEY@ \
@@ -32,7 +33,8 @@
               -webSocket \
               -workDir @JENKINS_AGENT_WORK_DIR@
             Restart=always
-            RestartSec=10
+            RestartSec=5s
+            StartLimitIntervalSec=0
 
             [Install]
             WantedBy=default.target

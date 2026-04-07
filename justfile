@@ -68,3 +68,7 @@ docker-restart:
 # enable linger for userspace services:
 enable-linger:
   sudo loginctl enable-linger $(whoami)
+
+# user service status
+user-status:
+  loginctl user-status $(whoami)

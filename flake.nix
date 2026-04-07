@@ -18,11 +18,14 @@
 
             [Service]
             Type=simple
+            Nice=-10
+            CPUSchedulingPolicy=fifo
+            CPUSchedulingPriority=10
             EnvironmentFile=%h/.config/jenkins-agent.env
             WorkingDirectory=@JENKINS_AGENT_WORK_DIR@
             ExecStart=${pkgs.openjdk}/bin/java \
               -Xms2G -Xmx10G \
-              -Dhudson.remoting.Launcher.pingIntervalSec=20 \
+              -Dhudson.remoting.Launcher.pingIntervalSec=5 \
               -Dhudson.remoting.Launcher.pingTimeoutSec=40 \
               -Dorg.jenkinsci.remoting.engine.JnlpProtocol3.idleTimeout=300 \
               -Djenkins.slaves.DefaultJnlpSlaveReceiver.connectionKeepAlive=true \

@@ -64,3 +64,7 @@ edit-docker-daemon:
 docker-restart:
   sudo systemctl daemon-reload
   sudo systemctl restart docker
+
+# enable linger for userspace services:
+enable-linger:
+  sudo loginctl enable-linger $(whoami)

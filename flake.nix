@@ -129,6 +129,11 @@
           };
 
           devShells.default =
+            let
+              gcp-sdk = pkgs.google-cloud-sdk.withExtraComponents [
+                pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
+              ];
+            in
             pkgs.stdenv.mkDerivation {
               name = "jenkins-agent-ci";
               buildInputs = with pkgs; [
@@ -136,6 +141,7 @@
                 just
                 awscli2
                 trivy
+                gcp-sdk
               ];
             };
         };

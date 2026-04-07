@@ -37,7 +37,6 @@
               -workDir @JENKINS_AGENT_WORK_DIR@
             Restart=always
             RestartSec=5s
-            StartLimitIntervalSec=0
 
             [Install]
             WantedBy=default.target

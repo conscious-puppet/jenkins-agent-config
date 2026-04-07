@@ -18,9 +18,6 @@
 
             [Service]
             Type=simple
-            Nice=-10
-            CPUSchedulingPolicy=fifo
-            CPUSchedulingPriority=10
             EnvironmentFile=%h/.config/jenkins-agent.env
             WorkingDirectory=@JENKINS_AGENT_WORK_DIR@
             ExecStart=${pkgs.openjdk}/bin/java \

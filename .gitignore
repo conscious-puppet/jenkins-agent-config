@@ -8,3 +8,4 @@
 !.envrc
 !.envrc.secrets.example
 !justfile
+!jenkins-helper.sh
